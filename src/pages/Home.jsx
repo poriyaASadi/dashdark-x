@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import Header from '../components/Header';
@@ -50,8 +50,6 @@ const xLabels = [
   'Page J',
 ];
 
-
-
 const pData = [2100, 2200, 2100, 2400, 2150, 2500, 2400];
 const xxLabels = [
   'Page A',
@@ -63,14 +61,28 @@ const xxLabels = [
   'Page G',
 ];
 
+
+
+
+
 export default function Home() {
+  const [DataHeader, setDataHeader] = useState([
+    {
+      title: 'Welcome back, poriya',
+      description: 'Measure your advertising ROI and report website traffic.'
+    },
+    {
+      title: 'Reports overview',
+      description: ''
+    }
+  ]);
   return (
     <div>
       <section className='flex bg-Color800'>
         <SideBar />
         <main className='w-full'>
           <section className='w-full p-3 min-h-screen bg-Color800 text-Color200'>
-            <Header />
+            <Header isShowButton={true} dataValue={DataHeader[0]} />
             <ul className='flex items-center justify-center w-full  gap-x-3'>
               {[...Array(4)].map((_, index) => (
                 <li key={index} className='w-full'>
@@ -78,9 +90,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <section>
+            <section className='mb-3'>
               <div className='bg-Color700 p-3 pr-0 mt-3 rounded-lg grid grid-cols-1 mobile:grid-cols-3'>
-                <div style={{ borderRight: '1px solid #343b4f' }} className='col-span-2 *:text-white border-none p-3 pt-6  border-Color2 w-full h-full'>
+                <div style={{ borderRight: '1px solid #343b4f' }} className='col-span-1 mobile:col-span-2 *:text-white border-none p-3 pt-6  border-Color2 w-full h-full'>
                   <div>
                     <p>Total revenue</p>
                     <div className='flex items-center gap-x-2'>
@@ -184,8 +196,8 @@ export default function Home() {
                     </defs>
                   </LineChart>
                 </div>
-                <div className=''>
-                  <div className='p-3'>
+                <div className='grid  sm:grid-cols-2 mobile:grid-cols-1'>
+                  <div className='p-3 sm:h-full mobile:h-fit flex flex-col justify-between'>
                     <div className='mb-1'>
                       <p>Total revenue</p>
                       <div className='flex items-center gap-x-2'>
@@ -246,7 +258,7 @@ export default function Home() {
                       <Link to="/" className='text-Color1'>View report</Link>
                     </div>
                   </div>
-                  <div className='p-3 mt-4' style={{borderTop : '1px solid #343b4f'}}>
+                  <div className='hidden p-3 mt-4 sm:h-full mobile:h-fit sm:flex flex-col flex-justify-between' style={{ borderTop: '1px solid #343b4f' }}>
                     <div className='mb-1'>
                       <p>Total revenue</p>
                       <div className='flex items-center gap-x-2'>
@@ -283,14 +295,16 @@ export default function Home() {
                           {
                             id: 'leftAxisId',
                             width: 50,
+                            display: 'none',
                             tickLabelStyle: { fill: 'rgba(255,255,255,0.7)' },
-                            disableAxisLine: true,
-                            disableTicks: true,
+                            disableAxisLine: false,
+                            disableTicks: false,
                           },
                           {
                             id: 'rightAxisId',
-                            position: 'right',
+                            position: 'none',
                             display: 'none',
+
                           },
                         ]}
                       />
@@ -298,7 +312,7 @@ export default function Home() {
                     <div className='flex items-center justify-between pt-3'>
                       <p className='text-Color400 flex items-center gap-x-1 text-ColorGreen'>
                         <span className='flex border-2 border-solid border-ColorGreen p-1 px-2 rounded-md items-center gap-x-1'>
-                          . Live
+                          Live
                         </span>
                         10k visitors
                       </p>
@@ -308,7 +322,8 @@ export default function Home() {
                 </div>
               </div>
             </section>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <Header isShowButton={true} dataValue={DataHeader[1]}/>
+            
           </section>
         </main>
       </section>

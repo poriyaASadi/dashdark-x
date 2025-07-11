@@ -1,13 +1,13 @@
 import React from 'react'
 import SouthIcon from '@mui/icons-material/South';
-export default function Header() {
+export default function Header({isShowButton , dataValue}) {
   return (
-    <div className='w-full p-3 flex items-start sm:flex-row flex-col gap-y-3 justify-between ___'>
+    <div className='w-full  p-3 flex items-start sm:items-center  flex-wrap gap-y-3 justify-between ___'>
         <div>
-            <h2 className='mb-1'>Welcome back, poriya</h2>
-            <p className='text-sm lg:text-base'>Measure your advertising ROI and report website traffic.</p>
+            <h2 className='mb-1'>{dataValue.title}</h2>
+            <p className='text-sm lg:text-base'>{dataValue.description}</p>
         </div>
-        <div className='flex items-center gap-x-3'>
+        <div className={`${isShowButton ? '' : '!hidden'} flex items-center gap-x-3`}>
             <button type="button" className='bg-transparent text-white border-none p-2 flex items-center ___ '>
                 Export data 
                 <SouthIcon fontSize='small'/>

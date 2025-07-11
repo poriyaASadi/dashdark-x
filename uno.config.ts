@@ -18,6 +18,7 @@ export default defineConfig({
       ColorGreen : '#05C168'
     },
     breakpoints : {
+      'sm' : '640px',
       'mobile' : '1024px'
     },
   },
